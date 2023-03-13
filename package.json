@@ -1,0 +1,48 @@
+{
+	"name": "svelte-package-generate-commonjs",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check .",
+		"format": "prettier --plugin-search-dir . --write .",
+		"package": "cross-env BUILD_TYPE=vite && svelte-kit sync && npm run build && copyfiles ./package.json dist && publint ./dist",
+		"package:svelte": "cross-env BUILD_TYPE=svelte && svelte-kit sync && svelte-package && copyfiles ./package.json dist && publint ./dist"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./index.d.ts",
+			"svelte": "./index.js"
+		}
+	},
+	"files": [
+		"."
+	],
+	"peerDependencies": {
+		"svelte": "^3.56.0"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.11.0",
+		"@sveltejs/package": "^2.0.2",
+		"@types/node": "^18.15.0",
+		"copyfiles": "^2.4.1",
+		"cross-env": "^7.0.3",
+		"prettier": "^2.8.4",
+		"prettier-plugin-svelte": "^2.9.0",
+		"publint": "^0.1.9",
+		"svelte-check": "^3.1.2",
+		"tslib": "^2.5.0",
+		"typescript": "^4.9.5",
+		"vite": "^4.1.4",
+		"vite-node": "^0.29.2",
+		"vite-plugin-dts": "^2.1.0"
+	},
+	"dependencies": {
+		"svelte": "^3.56.0"
+	}
+}
